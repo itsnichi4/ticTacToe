@@ -62,7 +62,7 @@ function playGame(player1, player2, startingPlayer) {
         currentPlayer = player1.symbol;
       }
       checkWin();
-      checkDraw();
+      
     });
   }
 }
@@ -109,6 +109,7 @@ function checkWin() {
     if (cell1 === "block" && cell2 === "block" && cell3 === "block") {
       win = true;
       winner = "X";
+      
     }
 
     const cell4 =
@@ -122,37 +123,38 @@ function checkWin() {
       win = true;
       winner = "O";
     }
+
   });
 
   if (win) {
     console.log(`The winner is ${winner}`);
     alert(`The winner is ${winner}`);
     restartGame();
+  } else {
+    checkDraw();
   }
 }
-
-function restartGame() {
-  window.location.reload();
-}
-
-restartGameButton.addEventListener("click", function () {
-  window.location.reload();
-});
 
 function checkDraw() {
-  if (!win) {
-    const cells = document.querySelectorAll(".cell");
-    let count = 0;
-    for (const cell of cells) {
-      const x = cell.querySelector(".X");
-      const o = cell.querySelector(".O");
-      if (x.style.display === "block" || o.style.display === "block") {
-        count++;
-      }
-    }
-    if (count === 9) {
-      alert("It's a draw");
-      restartGame();
+  const cells = document.querySelectorAll(".cell");
+  let filledCount = 0;
+  for (const cell of cells) {
+    const x = cell.querySelector(".X");
+    const o = cell.querySelector(".O");
+    if (x.style.display === "block" || o.style.display === "block") {
+      filledCount++;
     }
   }
+  if (filledCount === 9) {
+    alert("It's a draw");
+    restartGame();
+  }
 }
+
+    function restartGame() {
+      window.location.reload();
+    }
+    
+    restartGameButton.addEventListener("click", function () {
+      window.location.reload();
+    });
