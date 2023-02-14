@@ -127,9 +127,11 @@ function checkWin() {
   });
 
   if (win) {
+    setTimeout(()=>{
     console.log(`The winner is ${winner}`);
     alert(`The winner is ${winner}`);
     restartGame();
+    }, 20)
   } else {
     checkDraw();
   }
@@ -146,8 +148,10 @@ function checkDraw() {
     }
   }
   if (filledCount === 9) {
+    setTimeout(()=>{
     alert("It's a draw");
     restartGame();
+    },20)
   }
 }
 
